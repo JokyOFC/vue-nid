@@ -1,7 +1,7 @@
 <template>
     <div id="caixa">
         <header>
-            <img src="./assets/NID-banner.png" alt="NID-banner">
+            <img src="../assets/NID-banner.png" alt="NID-banner">
             <hr>
         </header>
 
@@ -29,11 +29,16 @@
     </div>   
 </template>
 
+<script>
+
+
+</script>
+
 <style lang="scss">
 
 // @import '@/styles/ltd.scss';
-// @import '@/styles/login.scss';
-@import '@/styles/login.css'
+@import '@/styles/login.scss';
+// @import '@/styles/login.css'
 
 
 </style>
