@@ -12,6 +12,7 @@
                             <!-- <th>Horário encerramento</th> -->
                             <th>Sala</th>
                             <th>Status</th>
+                            <th>Opções</th>
                         </tr>
         
                          <tr v-for="evento in eventos" :key="evento.id">

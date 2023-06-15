@@ -62,9 +62,10 @@ export default {
             try {
 
                 console.log(this.idEventoState)
+                console.log(this.token)
             const response = await axios.delete('https://ltd-nid-api.onrender.com/delete/eventos/' + this.idEventoState, {
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        'Authorization' : `Bearer ${token}`
                     }
                 });
             
