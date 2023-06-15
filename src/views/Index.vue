@@ -52,7 +52,7 @@
 
 <script>
 
-import Tab from '@/components/Tab.vue'
+import Tab from '../components/Tab.vue'
 import axios from 'axios';
 
 export default {

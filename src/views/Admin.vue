@@ -46,7 +46,7 @@
 
 <script>
 
-import TabAdmin from '@/components/TabAdmin.vue';
+import TabAdmin from '../components/TabAdmin.vue';
 
 export default {
     name: 'Admin',
