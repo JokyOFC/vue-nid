@@ -23,7 +23,8 @@
                 O Núcleo de Inclusão Digital (NID) é uma iniciativa do Centro Universitário Uniruy em parceria com os estudantes dos cursos de Tecnologia da Informação que surgiu com o objetivo de auxiliar pessoas em situação de vulnerabilidade, fornecendo aulas e monitorias de ferramentas e habilidades básicas, tais como: utilizar o computador, acessar a internet e utilizar os softwares Word e Powerpoint, a fim de proporcionar aos participantes melhores chances no mercado de trabalho, através da inclusão digital.
             </p>
         </div>
-        <Tab/>
+        <Tab :eventos=eventos />
+
     </section>
 
     <footer>
@@ -63,12 +64,18 @@ export default {
     mounted(){
         this.trazerEventos();
     },
+    data() {
+        return {
+            eventos: [],
+        };
+    },
     methods: {
-        trazerEventos() {
-            axios.get('https://ltd-nid-api.onrender.com/select/eventos')
+        async trazerEventos() {
+            await axios.get('https://ltd-nid-api.onrender.com/select/eventos')
                 .then(response => {
                     // Manipule a resposta aqui
                     console.log(response.data);
+                    this.eventos = response.data;
                 })
                 .catch(error => {
                     // Manipule o erro aqui

@@ -11,14 +11,17 @@
         </div>
 
         <div id="login">
-            <button onclick="gotoLink(this)" value="login.html" style="width: 64px!important; height: 64px!important;">
+            <button v-on:click="redirectToIndex" style="width: 64px!important; height: 64px!important;">
                 <img src="../assets/exit.svg" alt="login" style="width: 32px!important; height: 32px!important;">
             </button>
         </div>
     </header>
 
     <section>
-        <TabAdmin/>
+        <ModalCadastro :showModalCad="showModalCad" :closeModalCadFunc="closeModalCad"/>
+        <ModalUpdate :showModalUpd="showModalUpd" :closeModalUpdFunc="closeModalUpd"/>
+        <ModalDelete :showModalDel="showModalDel" :closeModalDelFunc="closeModalDel"/>
+        <TabAdmin :eventos=eventos :openModalCadFunc="openModalCad" :openModalUpdFunc="openModalUpd" :openModalDelFunc="openModalDel" />
     </section>
 
     <footer>
@@ -46,12 +49,71 @@
 
 <script>
 
+import axios from 'axios';
 import TabAdmin from '../components/TabAdmin.vue';
+import ModalCadastro from '@/components/ModalCadastro.vue';
+import ModalUpdate from '@/components/ModalUpdate.vue';
+import ModalDelete from '@/components/ModalDelete.vue';
 
 export default {
     name: 'Admin',
     components: {
-        TabAdmin
+        TabAdmin,
+        ModalCadastro,
+        ModalUpdate,
+        ModalDelete
+    },
+    mounted() {
+        this.trazerEventos();
+    }, 
+    data() {
+        return {
+            eventos: [],
+            showModalCad: false,
+            showModalUpd: false,
+            showModalDel: false,
+        };
+    },
+    methods: {
+        async trazerEventos() {
+            await axios.get('https://ltd-nid-api.onrender.com/select/eventos')
+                .then(response => {
+                    // Manipule a resposta aqui
+                    console.log(response.data);
+                    this.eventos = response.data;
+                })
+                .catch(error => {
+                    // Manipule o erro aqui
+                    console.error(error);
+                });
+        },
+        redirectToIndex() {
+            this.$router.push('/');
+        },
+        openModalCad() {
+            this.showModalCad = true;
+            console.log(this.showModalCad)
+        },
+        closeModalCad() {
+            this.showModalCad = false;
+            console.log(this.showModalCad)
+        },
+        openModalUpd() {
+            this.showModalUpd = true;
+            console.log(this.showModalUpd)
+        },
+        closeModalUpd() {
+            this.showModalUpd = false;
+            console.log(this.showModalUpd)
+        },
+        openModalDel() {
+            this.showModalDel = true;
+            console.log(this.showModalUpd)
+        },
+        closeModalDel() {
+            this.showModalDel = false;
+            console.log(this.showModalUpd)
+        }
     }
 }
 
@@ -60,5 +122,6 @@ export default {
 <style lang="scss">
 
 @import '@/styles/ltd.scss';
+@import '@/styles/ltd.css';
 
 </style>
